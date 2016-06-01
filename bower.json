@@ -1,0 +1,20 @@
+{
+  "name": "route",
+  "version": "1.0.0",
+  "authors": [
+    "jjjjyx <871839012@qq.com>"
+  ],
+  "description": "无线传感作业",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
