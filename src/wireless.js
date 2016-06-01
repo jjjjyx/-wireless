@@ -25,6 +25,7 @@ require(["jquery","echarts"], function ($,echarts) {
     links.pop();
     option = {
         title: {
+        	
             text: '笛卡尔坐标系上的 Graph'
         },
         tooltip: {},
