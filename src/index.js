@@ -6,33 +6,22 @@ require.config({
                 // "jquery" 	: "../lib/bower/jquery/dist/jquery.min",
                 "echarts"	: "../lib/echarts.min"
             }
-         
+
         });
-
-require(["wireless"], function (wireless) {
-    $('#content-wrapper').delegate('form,button', 'submit', function(e) {
-        e.stopPropagation();
-        return false;
+    require(["wireless"], function (wireless) {
+        $('#content-wrapper').delegate('form,button', 'submit', function(e) {
+            e.stopPropagation();
+            return false;
+        });
+        $(".start").click(function(){
+            // $(".play").addClass('sub');
+            // $(this).hide();
+            // $("")
+            $("#paramds-modal").modal('show');
+        });
+        $("#run").click(function(e){
+            //
+            wireless.play($("#numbers").val()||5,$("#bout").val()||10);
+            $("#paramds-modal").modal('hide');
+        })
     });
-	$(".start").click(function(){
-        // $(".play").addClass('sub');
-        // $(this).hide();
-        // $("")
-        $("#paramds-modal").modal('show');
-	});
-    $("#run").click(function(e){
-        //
-        wireless.play($("#numbers").val()||5,$("#bout").val()||10);
-        $("#paramds-modal").modal('hide');
-    })
-
-});
-
-// define(function(){
-
-// 	return {
-// 		init:function(){
-
-// 		}
-// 	}
-// });

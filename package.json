@@ -9,9 +9,29 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "httppage":"http://www.mbdoge.cn",
+  "homepage":"https://github.com/xsq871839012/-wireless",
+  "author": {
+    "name":"BlueShark-J"
+  },
   "license": "ISC",
   "dependencies": {
-    "echarts": "^3.1.10"
+    "echarts": "^3.1.10",
+    "grunt": "^1.0.1",
+    "grunt-autoprefixer": "~1.0.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-less": "~0.11.3",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-module-dependence": "^0.1.5",
+    "grunt-postcss": "^0.2.0",
+    "grunt-text-replace": "~0.3.9",
+    "grunt-wiredep": "^3.0.1",
+    "load-grunt-tasks": "^3.5.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-requirejs": "^1.0.0"
   }
 }

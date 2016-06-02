@@ -22,11 +22,18 @@ define({
 	            emphasis: {
 	                areaColor: '#2a333d'
 	            }
-		    }
+		    },
+			label: {
+            normal: {
+	                show: true,
+	                formatter: '{b}',
+					color:"#000"
+            	}
+        	}
 		}
-	})()
+	})(),
 	option:function(){
-		
+
 		option = {
 		    title: [{
 		        text: 'Anscombe\'s quartet',
@@ -70,7 +77,7 @@ define({
 		        {x: '7%', y2: '7%', width: '38%', height: '38%'},
 		    ],
 		    tooltip: {
-		        formatter: 'Group {a}->V{b}:({c})'
+		        //formatter: 'Group {a}->V{b}:({c})'
 		    },
 		    xAxis: [
 		        {
@@ -84,7 +91,7 @@ define({
 		            nameTextStyle:{
 		            	color:"#fff"
 		            }
-		            
+
 	        	},
 		        {
 		        	gridIndex: 1,
@@ -111,7 +118,7 @@ define({
 		            }
 
 		        }
-		        
+
 		    ],
 		    yAxis: [
 		        {
@@ -144,7 +151,7 @@ define({
 	            		color:"#fff"
 	            	}
 	            }
-		        
+
 		    ],
 		    series: [
 		        {

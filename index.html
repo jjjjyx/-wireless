@@ -8,7 +8,7 @@
 
     <title>路由</title>
 
-    
+
     <!--<script src="lib/bower/jquery/dist/jquery.min.js"></script>-->
 
    	<link href="lib/bower/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
@@ -36,7 +36,7 @@
                 <div class="form-group">
                 <label class="col-sm-5 control-label text-center">随机次数:</label>
                 <div class="col-sm-7">
-                  <input type="number" class="form-control" id="bout" placeholder="10" value="10" min="4" max="30">
+                  <input type="number" class="form-control" id="bout" placeholder="10" value="10" min="4" max="30" disabled="disabled">
                 </div>
               </div>
               <div class="form-group">
@@ -48,18 +48,17 @@
             </form>
           </div>
           <div class ="col-sm-5">
-            <button class="button button-primary button-giant button-border button-box " id="run" form="paramds-form" type="submit"><i class="icon-play"></i></button>   
+            <button class="button button-primary button-giant button-border button-box " id="run" form="paramds-form" type="submit"><i class="icon-play"></i></button>
           </div>
         </div>
-        
+
       </div>
     </div>
 </div>
-    <script src="lib/bower/jquery/dist/jquery.min.js" ></script>
-    <script src="lib/bower/requirejs/require.js" data-main="src/index"></script>
-    
-    <script src="lib/bower/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="lib/bower/promise/promise.js" ></script>
-
+<!-- bower:js -->
+<script src="lib/bower/jquery/dist/jquery.js"></script>
+<script src="lib/bower/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/bower/requirejs/require.js" data-main="src/index"></script>
+<!-- endbower -->
 </body>
 </html>
