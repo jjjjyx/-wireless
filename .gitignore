@@ -33,5 +33,5 @@ node_modules
 .node_repl_histor
 sftp-config.json
 dist
-/lib/bower/
+/lib/bower/*
 bower_components
