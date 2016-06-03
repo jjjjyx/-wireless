@@ -77,6 +77,17 @@ define({
 					left:'53%',
 					top:'52%'
 				},
+				toolbox:{
+					orient:'vertical',
+					x:'center',
+					y:'center',
+					show: true,
+			        feature: {
+			            dataZoom: {},
+			            dataView: {readOnly: false},
+			            saveAsImage: {}
+			        }
+				},
 			    title: [{
 			        text: '无线传感-期末作业',
 			        //subtext:"by- 软件工程-酱酱酱酱油鲜",
