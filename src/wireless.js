@@ -25,16 +25,35 @@ define([
 		play:function(numbers,bout){
 			//console.log(arguments);
 			if(numbers&&bout){
-				var nodes = rannode.rand(numbers,bout);
-				test.option.series.forEach(function(item){
+				var timeL = [];
+				test.option.options = [];
+				test.option.baseOption.data = timeL;
+				myChart.setOption(test.option);
+				for(var i = 0 ;i<bout;i++){
+					timeL.push(i+1);
+					var nodes = rannode.rand(numbers,bout);
+					var se = test.getSeriesOpt(nodes)//$.extend({},test.seriesOpt);
+					var bardata = []
+					se.series.forEach(function(item){
+						var data = _map[item._mapType]&&_map[item._mapType]._test(nodes,numbers,option.getOptions('route-padding'));
+						if(data&&data.s){
+							for(var k in data.s){
+								item[k] = data.s[k]
+							}
+							bardata.push(data.d)
+						}
+						item.data =nodes;
 
-					var data = _map[item._mapType]&&_map[item._mapType]._test(nodes,numbers,option.getOptions('route-padding'));
-					if(data)
-					for(var k in data){
-						item[k] = data[k]
-					}
-					item.data =nodes;
-				});
+					});
+					// console.log(se.series[0].data)
+					// console.log(test.seriesOpt)
+					se.series.push({
+						data:bardata
+					})
+					test.option.options.push(se)
+				}
+				test.option.baseOption.data = timeL;
+				console.log(test.option);
 				myChart.setOption(test.option);
 			}else{
 				throw new Error("没有提交正常的参数");

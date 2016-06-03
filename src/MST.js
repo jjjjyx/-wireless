@@ -94,8 +94,11 @@ define(['data/test','utils'],function(test,utils){
 			var lineData = this.prim(graph,length,nodes).edgeData,
 				pointData = utils.getLinesLength(lineData,padding)
 		    return {
-		    	markLine:$.extend({data:lineData},test.markLineOpt),
-				markPoint:$.extend({data:pointData.point},test.markPointOpt,{symbol:'circle',symbolSize:5,label: {normal: {show:false},tooltip:{show:false}}})
+				s:{
+			    	markLine:$.extend({data:lineData},test.markLineOpt),
+					markPoint:$.extend({data:pointData.point},test.markPointOpt,{symbol:'circle',symbolSize:5,label: {normal: {show:false},tooltip:{show:false}}})
+				},
+				d:pointData.count
 		    }
 		    //组装
 

@@ -2,7 +2,7 @@
 /*!
  * ====================================================
  *  v1.0.0 - 2016年6月1日
- * 
+ *
  * Copyright (c) 2016 BlueShark-J, All Rights Reserved
  * ====================================================
  */
@@ -34,9 +34,11 @@ body,html{
 #control-panel{
 	position: absolute;
 	left:53%;
-	top:54%;
+	top:59%;
 	width: 40%;
+	height: 300px;
 	z-index: 100;
+	background-color: transparent;
 }
 
 #option-group{

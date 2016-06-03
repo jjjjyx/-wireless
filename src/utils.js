@@ -193,12 +193,12 @@ define(function(){
                         length = utils.getPointLength(n1,n2),
 
                     count = Math.ceil(length/(padding||10))
-                    t+=count;
+                    t+=(count-1);
                     for(var i = 1;i<count;i++){
                         point.push({
                             coord:[n1[0]+dev.devx*dev.devxsym*i,n1[1]+dev.devy*dev.devysym*i],
                             name:"路由",
-                            
+
                         });
                     }
                 });

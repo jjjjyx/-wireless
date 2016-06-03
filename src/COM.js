@@ -65,10 +65,12 @@ define(['data/test'],function(test){
 				var pointData = utils.getLinesLength(line,padding);
 				var p =$.extend({data:pointData.point},test.markPointOpt,{symbol:'circle',symbolSize:5,label: {normal: {show:false},tooltip:{show:false}}})
 				p.data.push(daa)
-				console.log(p);
 				return {
-					markLine:$.extend({data:line},test.markLineOpt),
-					markPoint:p
+					s:{
+						markLine:$.extend({data:line},test.markLineOpt),
+						markPoint:p
+					},
+					d:pointData.count
 				}
 			// }else{
 			// 	console.log('重心计算有误');
