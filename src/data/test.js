@@ -136,12 +136,11 @@ define({
 			    },
 				legend:{
 					data: ['最小生成树', '重心', '凸壳'],
-					x2:'30%',
+					x2:'2%',
 					selected:{
 						'凸壳':false
 					},
 					// right:-200,
-					bottom:100,
 				},
 			    xAxis: [
 			        {

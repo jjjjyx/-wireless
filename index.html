@@ -14,8 +14,8 @@
    	<link href="lib/bower/bootstrap/dist/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link href="static/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
     <link href="static/css/buttons.css" type="text/css" rel="stylesheet" />
-    <link href="static/css/sweetalert.css" type="text/css" rel="stylesheet" />
-    <link href="static/css/sweetalert-themes/twitter/twitter.css" type="text/css" rel="stylesheet" />
+    <!-- <link href="static/css/sweetalert.css" type="text/css" rel="stylesheet" /> -->
+    <!-- <link href="static/css/sweetalert-themes/twitter/twitter.css" type="text/css" rel="stylesheet" /> -->
     <link href="ui/css/index.css" type="text/css" rel="stylesheet" />
 </head>
 
@@ -31,7 +31,7 @@
       <div class="panel-heading">控制面板</div>
       <div class="panel-body">
         <div class ="row">
-          <div class ="col-sm-5">
+          <div class ="col-sm-6">
             <form class="form-horizontal" id="paramds-form">
                 <div class="form-group">
                 <label class="col-sm-5 control-label text-center">随机次数:</label>
@@ -53,12 +53,16 @@
               </div>
             </form>
           </div>
-          <div class ="col-sm-5">
-            <button class="button button-primary button-giant button-border button-box " id="run" form="paramds-form" type="submit"><i class="icon-play"></i></button>
-          </div>
-        </div>
 
+        </div>
+        <div class='row'>
+            <div class ="col-sm-3 col-sm-offset-1">
+              <button class="button button-primary button-small" id="run" form="paramds-form" type="submit"><i class="icon-play"></i>开始</button>
+              <!-- <br><button class="button button-primary button-pill button-small" id="clean"><i class="icon-trash"></i></button> -->
+            </div>
+        </div>
       </div>
+
     </div>
 </div>
 <!-- bower:js -->

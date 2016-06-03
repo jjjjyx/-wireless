@@ -49,18 +49,25 @@ body,html{
 
 button.button-giant{
 	width: 88px !important;
-	height: 88px;
+	height: 38px;
+	line-height: 28px !important;
 }
 button.button-giant>i{
 	padding-left: 10px;
-    font-size: 40px;
-    line-height: 88px;
+	margin-right: 10px;
+    font-size: 14px;
+    line-height: 38px;
 }
 button>i{
-	font-size: 20px;
 	line-height:30px;
+	padding-left: 10px;
+	padding-right: 10px;
+    font-size: 14px;
 }
-
+#clean{
+	margin-top: 10px;
+	margin-left: 7px;
+}
 .form-horizontal .control-label{
 	text-align: center;
 }
