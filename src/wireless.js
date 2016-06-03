@@ -1,6 +1,20 @@
-define(["echarts","data/test","rannode","MST","COM"],function(echarts,test,rannode,mst,com){
+define([
+	"echarts",
+	"data/test",
+	"rannode",
+	"MST",
+	"COM",
+	"option"
+],function(
+	echarts,
+	test,
+	rannode,
+	mst,
+	com,
+	option
+){
 		var myChart = echarts.init(document.getElementById('main'))
-		
+
 	    myChart.setOption(test.option);
 	    window.onresize = myChart.resize;
 	    var _map = {
@@ -12,9 +26,9 @@ define(["echarts","data/test","rannode","MST","COM"],function(echarts,test,ranno
 			//console.log(arguments);
 			if(numbers&&bout){
 				var nodes = rannode.rand(numbers,bout);
-
 				test.option.series.forEach(function(item){
-					var data = _map[item._mapType]&&_map[item._mapType]._test(nodes,numbers);
+
+					var data = _map[item._mapType]&&_map[item._mapType]._test(nodes,numbers,option.getOptions('route-padding'));
 					if(data)
 					for(var k in data){
 						item[k] = data[k]

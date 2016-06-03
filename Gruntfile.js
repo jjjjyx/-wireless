@@ -16,11 +16,11 @@ module.exports = function(grunt) {
         ' * ====================================================\n' +
         ' * <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
         '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-        ' * <%= pkg.description ? " * " + pkg.description + "\\n" : "" %>\n' +
-        ' * <%= pkg.httppage ? " * " + pkg.httppage + "\\n" : "" %>\n' +
-        ' * Github:<%= pkg.homepage ? " * " + pkg.homepage + "\\n" : "" %>\n' +
+        '<%= pkg.description ? " * " + pkg.description + "\\n" : "" %>\n' +
+        '<%= pkg.httppage ? " * " + pkg.httppage + "\\n" : "" %>\n' +
+        '<%= pkg.homepage ? " * Github:" + pkg.homepage + "\\n" : "" %>\n' +
         ' * Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-        ' Licensed <%=pkg.licenses %>\n' +
+        ' Licensed <%=pkg.license %>\n' +
         ' * ====================================================\n' +
         ' */\n\n';
     var distPath = os.hostname().indexOf('ubuntu')>=0?'/home/ubuntu/www/wireless/':'dist/';

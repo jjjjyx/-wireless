@@ -36,19 +36,45 @@ define(['data/test'],function(test){
 		cy = cy/(6*area);
 		return {
 			coord:[Math.abs(cx),Math.abs(cy)],
-			name:"重心"
+			name:"重心",
+			symbol:'pin',
+			symbolSize:40,
+			label: {normal: {show:true,formatter: function (param) {
+                            return param != null ?'重心' : '';
+                        }},tooltip:{show:false}}
 		};
     }
     // var center = center_gravity(array,point_size);
     // console.log(center);
 	return {
 		center:center_gravity,
-		_test:function(nodes,length){
+		_test:function(nodes,length,padding){
 			var daa =this.center(nodes,length);
-			console.log(daa)
-			return {
-				markPoint:$.extend({data:[daa]},test.markPointOpt)
-			}
+			// if(daa.coord[0]<1000&&daa.coord[1]<1000){
+				var line = [];
+				nodes.forEach(function(item){
+					line.push([{
+						coord:item.value,
+	        			symbol:'none'
+					},{
+						coord:daa.coord,
+	        			symbol:'none'
+					}])
+				});
+
+				var pointData = utils.getLinesLength(line,padding);
+				var p =$.extend({data:pointData.point},test.markPointOpt,{symbol:'circle',symbolSize:5,label: {normal: {show:false},tooltip:{show:false}}})
+				p.data.push(daa)
+				console.log(p);
+				return {
+					markLine:$.extend({data:line},test.markLineOpt),
+					markPoint:p
+				}
+			// }else{
+			// 	console.log('重心计算有误');
+			// 	return {}
+			// }
+
 		}
 	};
 });

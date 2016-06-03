@@ -6,7 +6,10 @@ define({
 		        normal: {
 		            type: 'solid'
 		        }
-		    }
+		    },
+			tooltip:{
+				show:false
+			}
 		};
 		return markLineOpt;
 	})(),
@@ -36,7 +39,8 @@ define({
 
 		option = {
 		    title: [{
-		        text: 'Anscombe\'s quartet',
+		        text: '无线传感-期末作业',
+		        //subtext:"by- 软件工程-酱酱酱酱油鲜",
 		        x: 'center',
 		        y: 0
 		    },{
@@ -70,6 +74,17 @@ define({
 		        left:'26%',
 		        bottom: 10
 
+		    },{
+		    	text:"Copyright (c) 2016 \n by - 软件工程-酱酱酱酱油鲜 \n Licensed ISC",
+				textAlign: 'right',
+				right:-90,
+				bottom:0,
+				textStyle: {
+		            fontSize: 14,
+		            fontWeight: 'normal',
+					color:"#ccc"
+		        },
+
 		    }],
 		    grid: [
 		        {x: '7%', y: '7%', width: '38%', height: '38%'},
@@ -77,7 +92,7 @@ define({
 		        {x: '7%', y2: '7%', width: '38%', height: '38%'},
 		    ],
 		    tooltip: {
-		        //formatter: 'Group {a}->V{b}:({c})'
+		        formatter: 'Group {a}->V{b}:({c})'
 		    },
 		    xAxis: [
 		        {
