@@ -1,4 +1,4 @@
-define(['data/test'],function(test){
+define(['data/test',"CH.graham"],function(test,ch){
 
 
 	var  point_size = 5; // 顶点个数
@@ -21,15 +21,15 @@ define(['data/test'],function(test){
 			cx = 0,
 			cy = 0;
 		for (var i = 0;i<size-1;i++){
-			temp = arr[i]['value'][0] * arr[i+1]['value'][1] - arr[i]['value'][1] *arr[i+1]['value'][0];
+			temp = arr[i][0] * arr[i+1][1] - arr[i][1] *arr[i+1][0];
 			area+= temp;
-			cx+= temp * (arr[i]['value'][0]+arr[i+1]['value'][0]);
-			cy+= temp * (arr[i]['value'][1]+arr[i+1]['value'][1]);
+			cx+= temp * (arr[i][0]+arr[i+1][0]);
+			cy+= temp * (arr[i][1]+arr[i+1][1]);
 		}
-		temp = arr[size-1]['value'][0] * arr[0]['value'][1] - arr[size-1]['value'][1] *arr[0]['value'][0];
+		temp = arr[size-1][0] * arr[0][1] - arr[size-1][1] *arr[0][0];
 		area+= temp;
-		cx+= temp * (arr[size-1]['value'][0]+arr[0]['value'][0]);
-		cy+= temp * (arr[size-1]['value'][1]+arr[0]['value'][1]);
+		cx+= temp * (arr[size-1][0]+arr[0][0]);
+		cy+= temp * (arr[size-1][1]+arr[0][1]);
 
 		area = area/2;
 		cx = cx/(6*area);
@@ -49,7 +49,8 @@ define(['data/test'],function(test){
 	return {
 		center:center_gravity,
 		_test:function(nodes,length,padding){
-			var daa =this.center(nodes,length);
+			var tuPoint = ch.getGrahamScan(nodes,true);
+			var daa =this.center(tuPoint.bump,tuPoint.bump.length);
 			// if(daa.coord[0]<1000&&daa.coord[1]<1000){
 				var line = [];
 				nodes.forEach(function(item){

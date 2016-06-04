@@ -73,25 +73,23 @@ define(['data/test','utils'],function(test,utils){
 		};
 	}
 	return {
-
 		prim:prim,
-		_test:function(nodes,length,padding){
-			// console.log(utils.getValue)
-			var input=[]
-				graph = [];
-			for(var i = 0;i<length;i++){
-				for(var j = i+1;j<length;j++){
-					input.push([parseInt(nodes[i].id),parseInt(nodes[j].id),utils.getPointLength(nodes[i].value,nodes[j].value)])
+		getAllLineWeightByNode:function(nodes,length){
+			var taa  = [];
+			for(var i = 1;i<=length;i++){
+				taa[i] = []
+				for(var j = 1;j<=length;j++){
+					if(i == j) continue;
+					taa[i][j] = utils.getPointLength(nodes[i-1],nodes[j-1])
 				}
 			}
-			for (var k = 0; k < input.length; k++)  {
-		        graph[input[k][0]] = graph[input[k][0]]||[]
-		        graph[input[k][1]] = graph[input[k][1]]||[]
+			return taa;
+		},
+		_test:function(nodes,length,padding){
 
-		        graph[input[k][0]][input[k][1]] = input[k][2];
-		        graph[input[k][1]][input[k][0]] = input[k][2];
-		    }
-			var lineData = this.prim(graph,length,nodes).edgeData,
+			var lineData = this.prim(this.getAllLineWeightByNode(nodes.map(function(item){
+					return item.value;
+				}),length),length,nodes).edgeData,
 				pointData = utils.getLinesLength(lineData,padding)
 		    return {
 				s:{
