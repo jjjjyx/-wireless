@@ -175,41 +175,36 @@ define(['data/test','utils'],function(test,utils){
             if(this[i]!=this[dx]){
                 this[n++]=this[i]
             }
-        }    
+        }
         if(this.length)
             this.length-=1;
         return this;
     }
     var ch = function ch(lines,isTu){
-        // var maxlineLength = {
-        //     max:0,
-        //     dataIndex:0
-        // };
+        var style = {
+            normal:{
+                color:'#f00'
+            }
+        }
         lines.sort(function(a,b){
             return a[2]-b[2];
         }).pop();
-
         if(isTu.length){
-            var newlins =[]
+            //按照点到边的距离排序
             isTu.forEach(function(item){
                 var lintIndex =lines.reduce(function(prev,current,index){
-                    // console.log(current);
                     var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item);
-                    // console.log(prev);
-                    // console.log("%c "+minLength,'color:red');
                     return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
                 },[0,0]);
-                var deldLine = lines[lintIndex[1]];
-                lines.remove(lintIndex[1]);
-                // console.log(deldLine)
-                var style = {
-                    normal:{
-                        color:'#f00'
-                    }
-                }
-                newlins.push(
+                //var deldLine = lines[lintIndex[1]];
+                item.push(lintIndex);
+            });
+            function delEdge(delIndex,newPoint){
+                var deldLine = lines[delIndex];
+                lines.remove(delIndex);
+                lines.push(
                     [{
-                        coord:item,
+                        coord:newPoint,
                         symbol:'none',
                         lineStyle:style
                     },{
@@ -218,9 +213,9 @@ define(['data/test','utils'],function(test,utils){
                         lineStyle:style
                     }
                 ]);
-                newlins.push(
+                lines.push(
                     [{
-                        coord:item,
+                        coord:newPoint,
                         symbol:'none',
                         lineStyle:style
                     },{
@@ -229,11 +224,49 @@ define(['data/test','utils'],function(test,utils){
                         lineStyle:style
                     }
                 ]);
-            });
-            return lines.concat(newlins);
-        }else{
-            return lines;
+            }
+            isTu.sort(function(a,b){
+                return a[2][0]-b[2][0];
+            }).forEach(function(item,index){
+                console.log(index);
+                if(index==0){
+                    delEdge(item[2][1],item.slice(0,2))
+                }else{
+                    var lintIndex =lines.reduce(function(prev,current,index){
+                        var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item.slice(0,2));
+                        return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+                    },[0,0]);
+                    delEdge(lintIndex[1],item.slice(0,2));
+                }
+            })
+            // delEdge(isTu[0][2][1],isTu[0].slice(0,2))
+            // //
+            // console.log(isTu)
+            // if(isTu.length>=2){
+            //     var lintIndex =lines.reduce(function(prev,current,index){
+            //         var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,isTu[1].slice(0,2));
+            //         console.log(minLength)
+            //         return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+            //     },[0,0]);
+            //     console.log(lintIndex);
+            //     //delEdge(lintIndex[1],isTu[0].slice(0,2));
+            // }
+
+            // .forEach(function(item,index){
+            //     var deldLine;
+            //     if(index==0){
+            //         delEdge(item[2][1],item.slice(0,2))
+            //     }else{
+            //         var lintIndex =lines.reduce(function(prev,current,index){
+            //             var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item);
+            //             return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+            //         },[0,0]);
+            //         delEdge(lintIndex[1],item.slice(0,2));
+            //     }
+            // });
         }
+        console.log(lines);
+        return lines;
     }
     return {
         getGrahamScan:(function(){

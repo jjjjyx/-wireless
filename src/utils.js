@@ -203,7 +203,10 @@ define(function(){
                 }
                 var lineK = (node2[1] - node1[1]) / (node2[0] - node1[0]);
                 var lineC = (node2[0] * node1[1] - node1[0] * node2[1]) / (node2[0] - node1[0]);
-                // console.log(lineK,lineC);
+                console.log( (Math.sqrt(lineK * lineK + 1)));
+                console.log(Math.abs(lineK * node3[0] - node3[1] + lineC)+"%c","color:red");
+                if(Math.abs(lineK * node3[0] - node3[1] + lineC)==0)
+                    console.log(111);
                 return Math.abs(lineK * node3[0] - node3[1] + lineC) / (Math.sqrt(lineK * lineK + 1));
             },
             getLinesLength:function(lines,padding){
