@@ -13,20 +13,18 @@ require(["wireless",'option'], function (wireless,option) {
         e.stopPropagation();
         return false;
     });
-    $(".start").click(function(){
-        // $(".play").addClass('sub');
-        // $(this).hide();
-        // $("")
-        $("#paramds-modal").modal('show');
-    });
+    // $(".start").click(function(){
+    //     // $(".play").addClass('sub');
+    //     // $(this).hide();
+    //     // $("")
+    //     $("#paramds-modal").modal('show');
+    // });
     $("#run").click(function(e){
-
         if(wireless.isResult&&!confirm("已经存在结果是否清空")){
-                return ;
+            return ;
         }
-
         wireless.play($("#numbers").val()||5,$("#bout").val()||10);
-        $("#paramds-modal").modal('hide');
+        //$("#paramds-modal").modal('hide');
     });
     $("#padding").on('input',function(){
         if($(this).val())

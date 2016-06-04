@@ -4,6 +4,7 @@ define([
 	"rannode",
 	"MST",
 	"COM",
+	"CH.graham",
 	"option"
 ],function(
 	echarts,
@@ -11,6 +12,7 @@ define([
 	rannode,
 	mst,
 	com,
+	ch,
 	option
 ){
 		var myChart = echarts.init(document.getElementById('main'))
@@ -19,7 +21,8 @@ define([
 	    window.onresize = myChart.resize;
 	    var _map = {
 	    	"mst":mst,
-	    	"com":com
+	    	"com":com,
+			'ch':ch
 	    }
 	return {
 		isResult:false,
@@ -42,7 +45,7 @@ define([
 								for(var k in data.s){
 									item[k] = data.s[k]
 								}
-								bardata.push(data.d)
+								data.d&&bardata.push(data.d)
 							}
 							item.data =nodes;
 
@@ -59,6 +62,7 @@ define([
 					myChart.setOption(test.option);
 					this.isResult = true;
 				} catch (e) {
+					console.log(e);
 					alert("发送异常,请重试！");
 				}
 			}else{

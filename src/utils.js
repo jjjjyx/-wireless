@@ -94,47 +94,47 @@ define(function(){
                return result;
            },
            /**
-        * @method paralle()
-        * @for jyx.Utils
-        * @grammar paralle() => {Any}
-        *
-        * @description 平行地对 v1 和 v2 进行指定的操作
-        *
-        *    如果 v1 是数字，那么直接进行 op 操作
-        *    如果 v1 是对象，那么返回一个对象，其元素是 v1 和 v2 同键值的每个元素平行地进行 op 操作的结果
-        *    如果 v1 是数组，那么返回一个数组，其元素是 v1 和 v2 同索引的每个元素平行地进行 op 操作的结果
-        *
-        * @param  {Number|Object|Array} v1 第一个操作数
-        * @param  {Number|Object|Array} v2 第二个操作数
-        * @param  {Function} op 操作函数
-        *
-        *
-        *
-        * @example
-        *
-        * ```js
-        * var a = {
-        *     value1: 1,
-        *     value2: 2,
-        *     value3: [3, 4, 5]
-        * };
-        *
-        * var b = {
-        *     value1: 2,
-        *     value2: 3,
-        *     value3: [4, 5, 6]
-        * };
-        *
-        * var c = jyx.Utils.paralle(a, b, function(v1, v2) {
-        *     return v1 + v2;
-        * });
-        *
-        * console.log(c.value1); // 3
-        * console.log(c.value2); // 5
-        * console.log(c.value3); // [7, 9, 11]
-        *
-        * ```
-        */
+            * @method paralle()
+            * @for jyx.Utils
+            * @grammar paralle() => {Any}
+            *
+            * @description 平行地对 v1 和 v2 进行指定的操作
+            *
+            *    如果 v1 是数字，那么直接进行 op 操作
+            *    如果 v1 是对象，那么返回一个对象，其元素是 v1 和 v2 同键值的每个元素平行地进行 op 操作的结果
+            *    如果 v1 是数组，那么返回一个数组，其元素是 v1 和 v2 同索引的每个元素平行地进行 op 操作的结果
+            *
+            * @param  {Number|Object|Array} v1 第一个操作数
+            * @param  {Number|Object|Array} v2 第二个操作数
+            * @param  {Function} op 操作函数
+            *
+            *
+            *
+            * @example
+            *
+            * ```js
+            * var a = {
+            *     value1: 1,
+            *     value2: 2,
+            *     value3: [3, 4, 5]
+            * };
+            *
+            * var b = {
+            *     value1: 2,
+            *     value2: 3,
+            *     value3: [4, 5, 6]
+            * };
+            *
+            * var c = jyx.Utils.paralle(a, b, function(v1, v2) {
+            *     return v1 + v2;
+            * });
+            *
+            * console.log(c.value1); // 3
+            * console.log(c.value2); // 5
+            * console.log(c.value3); // [7, 9, 11]
+            *
+            * ```
+            */
            paralle: function paralle(v1, v2, op) {
                var Class, field, index, name, value;
                // 数组
@@ -184,6 +184,28 @@ define(function(){
        		getPointLength:function(node,node2){
        			return Math.pow( Math.pow(node[0]-node2[0],2)+ Math.pow(node[1]-node2[1],2), 0.5);
        		},
+            /****点到直线的距离***
+             * 过点（x1,y1）和点（x2,y2）的直线方程为：KX -Y + (x2y1 - x1y2)/(x2-x1) = 0
+             * 设直线斜率为K = (y2-y1)/(x2-x1),C=(x2y1 - x1y2)/(x2-x1)
+             * 点P(x0,y0)到直线AX + BY +C =0DE 距离为：d=|Ax0 + By0 + C|/sqrt(A*A + B*B)
+             * 点（x3,y3）到经过点（x1,y1）和点（x2,y2）的直线的最短距离为：
+             * distance = |K*x3 - y3 + C|/sqrt(K*K + 1)
+             */
+            /**
+    		 * 计算点到线的距离
+    		 */
+            getPointToLineLength:function(node1,node2,node3){
+                if (node1[0] == node2[0]){
+                   return Math.abs(node3[0] - node1[0]);
+                }
+                if (node1[1] == node2[1]){
+                   return Math.abs(node3[1] - node1[1]);
+                }
+                var lineK = (node2[1] - node1[1]) / (node2[0] - node1[0]);
+                var lineC = (node2[0] * node1[1] - node1[0] * node2[1]) / (node2[0] - node1[0]);
+                // console.log(lineK,lineC);
+                return Math.abs(lineK * node3[0] - node3[1] + lineC) / (Math.sqrt(lineK * lineK + 1));
+            },
             getLinesLength:function(lines,padding){
                 var t=0,point= [];
                 lines.forEach(function(item){

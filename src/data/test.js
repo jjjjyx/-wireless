@@ -140,17 +140,14 @@ define({
 			        {x: '7%', y: '7%', width: '38%', height: '38%'},
 			        {x2: '7%', y: '7%', width: '38%', height: '38%'},
 			        {x: '7%', y2: '7%', width: '38%', height: '38%'},
-					{width: 200, height: 200,x2:'10%',y2:'10%'}
+					{width: 240, height: 200,x2:'10%',y2:'10%'}
 			    ],
 			    tooltip: {
 			        formatter: 'Group {a}->V{b}:({c})'
 			    },
 				legend:{
 					data: ['最小生成树', '重心', '凸壳'],
-					x2:'2%',
-					selected:{
-						'凸壳':false
-					},
+					x2:'2%'
 					// right:-200,
 				},
 			    xAxis: [
@@ -252,15 +249,6 @@ define({
 			            _mapType:'mst',
 			            xAxisIndex: [0],
 			            yAxisIndex: [0],
-			            //data: dataAll[0],
-			            // data:[
-			            // 	[200,200],{
-			            // 		value:[300,300],
-			            // 		name:"ads",
-			            // 		id:"11"
-			            // 	}
-			            // ]
-			            //markLine: markLineOpt
 			        },
 			        {
 			            name: '重心',
@@ -285,6 +273,12 @@ define({
 						type:"bar",
 						xAxisIndex: [3],
 			            yAxisIndex: [3],
+						label: {
+			                normal: {
+			                    show: true,
+			                    position: 'top'
+			                }
+			            },
 					}
 			    ]
 			},

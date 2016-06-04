@@ -6,7 +6,7 @@ define(function(){
 				//node.push(new Edge());
 				//node.push(new Point(i+1,Math.round(Math.random() * 1000 + i),Math.round(Math.random() * 1000 + i)));
 				node.push({
-					value:[Math.round(Math.random() * 1000 - i),Math.round(Math.random() * 1000 - i)],
+					value:[Math.round(Math.random() * 999 ),Math.round(Math.random() * 999)],
 					id:i,
 					name:i,
 					symbol:'circle',
