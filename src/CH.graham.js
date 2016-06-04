@@ -193,8 +193,10 @@ define(['data/test','utils'],function(test,utils){
             //按照点到边的距离排序
             isTu.forEach(function(item){
                 var lintIndex =lines.reduce(function(prev,current,index){
-                    var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item);
-                    return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+                    var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item,true);
+                    if(minLength)
+                        return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+                    else return prev;
                 },[0,0]);
                 //var deldLine = lines[lintIndex[1]];
                 item.push(lintIndex);
@@ -228,14 +230,20 @@ define(['data/test','utils'],function(test,utils){
             isTu.sort(function(a,b){
                 return a[2][0]-b[2][0];
             }).forEach(function(item,index){
-                console.log(index);
                 if(index==0){
                     delEdge(item[2][1],item.slice(0,2))
                 }else{
                     var lintIndex =lines.reduce(function(prev,current,index){
-                        var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item.slice(0,2));
-                        return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+                        var minLength=utils.getPointToLineLength(current[0].coord,current[1].coord,item.slice(0,2),true);
+                        if(minLength)
+                            return prev[0]==0?[minLength,index]:(prev[0]<minLength?prev:[minLength,index]);
+                        else return prev;
                     },[0,0]);
+                    // lines.map(function(item,index){
+                    //     return [utils.getPointToLineLength(current[0].coord,current[1].coord,item.slice(0,2)),index]
+                    // }).sort(function(a,b){
+                    //     return a[0]-b[0]
+                    // })
                     delEdge(lintIndex[1],item.slice(0,2));
                 }
             })

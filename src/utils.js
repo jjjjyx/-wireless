@@ -184,6 +184,21 @@ define(function(){
        		getPointLength:function(node,node2){
        			return Math.pow( Math.pow(node[0]-node2[0],2)+ Math.pow(node[1]-node2[1],2), 0.5);
        		},
+
+            isPointInSegments:function(node1,node2,node3){
+                return (node3[0]>node1[0]&&node3[0]<node2[0])||(node3[0]<node1[0]&&node3[0]>node2[0])
+            },
+    //          qreal A = (pt1.y()-pt2.y())/(pt1.x()- pt2.x());
+    // qreal B = (pt1.y()-A*pt1.y());
+    // /// > 0 = ax +b -y;  对应垂线方程为 -x -ay + m = 0;(mm为系数)
+    // /// > A = a; B = b;
+    // qreal m = pt3.x() + A*pt3.y();
+    //
+    // /// 求两直线交点坐标
+    // QPointF ptCross;
+    // ptCross.setX((m-A*B)/(A*A + 1));
+    // ptCross.setY(A*ptCross.x()+B);
+
             /****点到直线的距离***
              * 过点（x1,y1）和点（x2,y2）的直线方程为：KX -Y + (x2y1 - x1y2)/(x2-x1) = 0
              * 设直线斜率为K = (y2-y1)/(x2-x1),C=(x2y1 - x1y2)/(x2-x1)
@@ -194,7 +209,7 @@ define(function(){
             /**
     		 * 计算点到线的距离
     		 */
-            getPointToLineLength:function(node1,node2,node3){
+            getPointToLineLength:function(node1,node2,node3,isSegments){
                 if (node1[0] == node2[0]){
                    return Math.abs(node3[0] - node1[0]);
                 }
@@ -203,10 +218,17 @@ define(function(){
                 }
                 var lineK = (node2[1] - node1[1]) / (node2[0] - node1[0]);
                 var lineC = (node2[0] * node1[1] - node1[0] * node2[1]) / (node2[0] - node1[0]);
-                console.log( (Math.sqrt(lineK * lineK + 1)));
-                console.log(Math.abs(lineK * node3[0] - node3[1] + lineC)+"%c","color:red");
-                if(Math.abs(lineK * node3[0] - node3[1] + lineC)==0)
-                    console.log(111);
+
+                if(isSegments){
+                    var tt = (lineK * node1[0] + node3[0] / lineK + node3[1] - node1[1]) / (1 / lineK + lineK)
+                    var h =[
+                        tt,
+                        -1 / lineK * (tt - node3[0]) + node3[1]
+                    ]
+                    if(!this.isPointInSegments(node1,node2,h)){
+                        return null;
+                    }
+                }
                 return Math.abs(lineK * node3[0] - node3[1] + lineC) / (Math.sqrt(lineK * lineK + 1));
             },
             getLinesLength:function(lines,padding){
