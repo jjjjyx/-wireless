@@ -175,8 +175,9 @@ define(['data/test','utils'],function(test,utils){
             if(this[i]!=this[dx]){
                 this[n++]=this[i]
             }
-        }
-        this.length-=1;
+        }    
+        if(this.length)
+            this.length-=1;
         return this;
     }
     var ch = function ch(lines,isTu){

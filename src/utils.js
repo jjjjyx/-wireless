@@ -215,6 +215,11 @@ define(function(){
                         length = utils.getPointLength(n1,n2),
 
                     count = Math.ceil(length/(padding||10))
+                    if(!dev){
+                        console.log(lines);
+                        console.log(item);
+                    }
+
                     t+=(count-1);
                     for(var i = 1;i<count;i++){
                         point.push({
@@ -232,18 +237,32 @@ define(function(){
 
             //
             getPointByPaddingDev:function(node,node2,padding){
-                if(node[0]!=node2[0]&&node[1]!=node2[1]){
-                    var z = node2[0]-node[0];
-                    var c = node2[1]-node[1];
-                    // var o = c*node[0] - z * node[1];
-                    var k = c/z;
+                var z = node2[0]-node[0];
+                var c = node2[1]-node[1];
+                if(node[0]==node2[0]){
                     return {
-                        devx : Math.abs(padding*Math.cos(Math.atan(k))),
-                        devy : Math.abs(padding*Math.sin(Math.atan(k))),
-                        devxsym:z>0?1:-1,
+                        devx:0,
+                        devy:Math.abs(node[1]-node2[1])/padding,
+                        devxsym:1,
                         devysym:c>0?1:-1
                     }
                 }
+                if(node[1]==node2[1]){
+                    return {
+                        devx:Math.abs(node[0]-node2[0])/padding,
+                        devy:0,
+                        devxsym:z>0?1:-1,
+                        devysym:1
+                    }
+                }
+                var k = c/z;
+                return {
+                    devx : Math.abs(padding*Math.cos(Math.atan(k))),
+                    devy : Math.abs(padding*Math.sin(Math.atan(k))),
+                    devxsym:z>0?1:-1,
+                    devysym:c>0?1:-1
+                }
+
             }
        };
        /**
