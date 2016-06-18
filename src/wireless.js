@@ -34,7 +34,7 @@ define([
 					test.option.options = [];
 					test.option.baseOption.data = timeL;
 					myChart.setOption(test.option);
-					for(var i = 0 ;i<1;i++){
+					for(var i = 0 ;i<bout;i++){
 						timeL.push(i+1);
 						var nodes = rannode.rand(numbers,bout);
 						var se = test.getSeriesOpt(nodes)//$.extend({},test.seriesOpt);
