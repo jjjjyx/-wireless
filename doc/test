@@ -1,0 +1,53 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class HttpRequest  {
+	/**
+     * Ïָ¶¨URL·¢ËGET·½·¨µÄë
+     * 
+     * @param url
+     *            ·¢ËÇÇµÄRL
+     * @param param
+     *            ÇÇ²ÎýóýÇname1=value1&name2=value2 µÄÎ½¡£
+     * @return URL Ë´ú³ÌÊ´µÄì½á
+     */
+    public static String sendGet(String url) {
+        String result = "";
+        BufferedReader in = null;
+        try {
+            URL realUrl = new URL(url);
+            // ´򿪺ÍRL֮¼äl½Ó            URLConnection connection = realUrl.openConnection();
+            // ÉÖͨÓµÄëÊÐ
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            connection.connect();
+            in = new BufferedReader(new InputStreamReader(
+                    connection.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            System.out.println("·¢ËGETÇÇ³ö쳣£¡" + e);
+            e.printStackTrace();
+        }
+        // ʹÓfinally¿é¹رÕäÁ
+        finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+    	System.out.println(sendGet("http://www.mbdoge.cn:3021/com?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]"));
+    	
+	}
+}

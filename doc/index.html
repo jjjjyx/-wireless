@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="title" content="期末作业">
+    <meta name="keyword" content="路径计算">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link href="./jshighlight-master/theme/jshighlight-default.css" rel="stylesheet" />
+    <title>接口</title>
+  <style type="text/css">
+    body,html{
+      width: 100%;
+      height: 100%;
+    }
+    #content-wrapper{
+      width: 1170px;
+      margin:0 auto;
+    }
+    #content-body{
+      
+      height: 100%;
+      margin:0 auto;
+      margin-left: 21.617%;
+      padding-left: 22px;
+      border-left: 1px solid rgba(93, 96, 107, .15);
+    }
+    .code{
+      display: block;
+      padding: 9.5px;
+      margin: 0 0 10px;
+      font-size: 13px;
+      line-height: 1.42857143;
+      color: #333;
+      word-break: break-all;
+      word-wrap: break-word;
+      background-color: #f5f5f5;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      }
+      .code-demo{
+        padding-left: 41px;
+      }
+      #content-wrapper pre {
+        font-family: Monaco, Consolas, "Lucida Console", monospace;
+        background-color: #FCFCFC;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        overflow-x: auto;
+
+    }
+    h1{
+      display: block !important;
+      font-size: 30px;
+      font-weight: 400;
+      color: rgb(93, 96, 107);
+      line-height: 1.33;
+      margin-bottom: 8px;
+      margin-top: 6px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(93, 96, 107, .15);
+    }
+    h3{
+      font-size: 24px;
+      font-weight: 400;
+      color: #4fc3f7;
+      line-height: 1.7;
+      margin-bottom: 4px;
+      margin-top: 10px;
+    }
+    blockquote{
+      margin: 0px !important;
+      margin-bottom: 20px !important;
+      margin-top: 20px !important;
+      font-size: 14px;
+      font-weight: 400;
+      color: #394d54;
+      line-height: 1.7;
+      border: none;
+      border-left: 4px solid #ade5f9;
+      padding: 10px;
+      padding-left: 15px;
+    }
+    table{
+      border: 1px solid #dddddd;
+      width: 100%;
+      margin-bottom: 18px;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+    table th {
+    background: #eee;
+      padding: 8px;
+      line-height: 1.428571429;
+      vertical-align: top;
+      border: 1px solid #dddddd;
+
+    }
+    th {
+      text-align: left;
+    }
+    table td {
+      padding: 8px;
+      line-height: 1.428571429;
+      vertical-align: top;
+      border: 1px solid #dddddd;
+  }
+  samp{
+    font-size: 12px;
+    text-align: right;
+
+  }
+  pre{
+    padding-left: 30px;
+    word-wrap:break-word;
+  }
+  #nav{
+    position: fixed;
+    top: 10px;
+    max-width: 262px;
+  }
+  #nav li{
+    list-style:none;
+    position: relative;
+    display: block;
+    margin-bottom: 6px;
+  }
+  #nav li>a{
+    font-size:13px;
+    position: relative;
+    display: block;
+    width: 80%;
+    padding: 2px 8px;
+    color: #4fc3f7;
+    margin-left: -2px;
+    margin-right: 20px;
+    text-decoration: none;
+    border-left: 1px solid #4fc3f7;
+    /*background: rgba(0, 183, 238, .1);*/
+  }
+  .github{
+    float: right;
+    position: relative;
+    top: 10px;
+  }
+  </style>
+
+</head>
+
+<body>
+  
+<div id="content-wrapper">
+    <div id="nav">
+    <ul>
+      <li><a href="#content-body">接口说明</a></li>
+      <li><a href="#method">3个路径求法</a></li>
+      <li><a href="#path">请求方法</a></li>
+      <li><a href="#parames">参数说明</a></li>
+      <li><a href="#data">数据结构</a></li>
+      <li><a href="#return">返回值</a></li>
+      <li><a href="#demo">程序代码示范</a></li>
+      <li><a href="#othe">其他</a></li>
+    </ul>
+  </div>
+  <div id="content-body">
+    <h1>接口说明 <samp>Copyright © 2016 by - 软件工程-酱酱酱酱油鲜. All Rights Reserved.</samp><iframe src="https://ghbtns.com/github-btn.html?user=xsq871839012&repo=-wireless&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px" class="github"></iframe></h1>
+
+    <h3 id="path">3个路径求法</h3>
+    <blockquote>
+      <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>算法</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>mst</td>
+            <td>最小生成树</td>
+          </tr>
+          <tr>
+            <td>com</td>
+            <td>重心算法</td>
+          </tr>
+          <tr>
+            <td>ch</td>
+            <td>凸包算法</td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+        <h3 id="method">请求方法</h3>
+    <pre class='code'>
+http://www.mbdoge.cn:3021/path/&lt;pathname&gt;?node=&lt;params&gt;
+</pre>  
+    
+    <h3 id="parames">参数说明</h3>
+     <blockquote>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>参数</th>
+            <th>必选</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>node</td>
+            <td>true</td>
+            <td>所要计算的点集合</td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+
+    <h3 id="data">数据结构说明</h3>
+    <p>伪代码</p>
+  <pre class='code code-demo' data-language='javascript'>
+//数组里面2个值表示一个点,0:x,1:y 
+Point=[x,y]
+//示范
+var point = [1,3] //坐标轴 (1,3)
+//数组里放2个点表示一条边
+
+line=[[x,y],[x,y]]
+//示范
+var edge = [[1,1],[3,4]] //表示线段(1,1)-(3,4)
+</pre>
+    <p>示范</p>
+  <pre class='code'>
+<a href='http://www.mbdoge.cn:3021/path/com?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]' target='_blank'>http://www.mbdoge.cn:3021/path/com?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]</a>
+
+<a href='http://www.mbdoge.cn:3021/path/mst?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]' target='_blank'>http://www.mbdoge.cn:3021/path/mst?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]</a>
+
+<a href='http://www.mbdoge.cn:3021/path/ch?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]' target='_blank'>http://www.mbdoge.cn:3021/path/ch?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]</a>
+</pre>
+
+  <h3 id="return">返回值</h3>
+  <blockquote>
+     <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>类型</th>
+            <th>含义</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>code</td>
+            <td>int</td>
+            <td>状态，0 为成功</td>
+          </tr>
+          <tr>
+            <td>data</td>
+            <td>Object</td>
+            <td>返回结果</td>
+          </tr>
+          <tr>
+            <td colspan=2 >最小生成树</td>
+          </tr>
+          <tr>
+            <td>data.weight</td>
+            <td>double</td>
+            <td>总计权值</td>
+          </tr>
+          <tr>
+            <td>data.edgeData</td>
+            <td>Array</td>
+            <td>边集，无向边</td>
+          </tr>
+          <tr>
+            <td colspan=2 >重心</td>
+          </tr>
+          <tr>
+            <td>data.point</td>
+            <td>Point</td>
+            <td>重心</td>
+          </tr>
+          <tr>
+            <td colspan=2 >凸包</td>
+          </tr>
+          <tr>
+            <td>data.bump</td>
+            <td>Array</td>
+            <td>凸点集合</td>
+          </tr>
+          <tr>
+            <td>data.wai</td>
+            <td>Array</td>
+            <td>被围点</td>
+          </tr>
+        </tbody>
+      </table>
+  </blockquote>
+  <h3 id="demo">程序代码示范</h3>
+  <p>JavaScript</p>
+  <pre class='code code-demo' data-language='javascript'>
+(function($){
+  var node = [[256,191],[470,624],[123,685],[217,237],[87,998]];
+  $.get("http://www.mbdoge.cn:3021/path/com",{node:JSON.stringify(node)},function(e){
+    if(e.code==0){
+      console.log(e.data);
+      console.log("重心点："+e.data.point);
+    }
+  },'json')
+})
+</pre>
+
+<p>Java</p>
+  <pre class='code code-demo' data-language='javascript'>
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class HttpRequest  {
+    public static String sendGet(String url) {
+        String result = "";
+        BufferedReader in = null;
+        try {
+            URL realUrl = new URL(url);
+            URLConnection connection = realUrl.openConnection();
+            connection.setRequestProperty("accept", "*/*");
+            connection.setRequestProperty("connection", "Keep-Alive");
+            connection.connect();
+            in = new BufferedReader(new InputStreamReader(
+                    connection.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                result += line;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (in != null) {
+                    in.close();
+                }
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return result;
+    }
+    public static void main(String[] args) {
+      System.out.println(
+        sendGet("http://www.mbdoge.cn:3021/com?node=[[256,191],[470,624],[123,685],[217,237],[87,998]]")
+      );
+      
+  }
+}
+</pre>
+
+<p>c#</p>
+<pre class="code code-demo" data-language='javascript'>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
+using System.Net;
+using System.Text;
+namespace Test{
+  class Program{
+    static void Main(string[] args){
+      Console.WriteLine(
+        HttpGet("http://www.mbdoge.cn:3021/com","node=[[256,191],[470,624],[123,685],[217,237],[87,998]]")
+      );
+      //Console.ReadKey();
+    }
+    public static string HttpGet(string Url, string postDataStr){
+      HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Url 
+          + (postDataStr == "" ? "" : "?") + postDataStr);
+      request.Method = "GET";
+      request.ContentType = "text/html;charset=UTF-8";
+
+      HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+      Stream myResponseStream = response.GetResponseStream();
+      StreamReader myStreamReader = new StreamReader(myResponseStream, Encoding.GetEncoding("utf-8"));
+      string retString = myStreamReader.ReadToEnd();
+      myStreamReader.Close();
+      myResponseStream.Close();
+
+      return retString;
+    }
+  }
+}
+</pre>
+<h3 id="utils">工具方法-api</h3>
+    <blockquote>
+      <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>getLineCount</td>
+            <td>计算一条边上有多少个路由器，并返回坐标</td>
+          </tr>
+          <tr>
+            <td>getLinesCount</td>
+            <td>计算一组边上共多少个路由器，并返回坐标</td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+
+     <h3>请求方法</h3>
+    <pre class='code'>
+http://www.mbdoge.cn:3021/utils/&lt;api-name&gt;?line=&lt;params1&gt;&padding=&lt;params2&gt;
+</pre>  
+    <!-- http://127.0.0.1:3021/utils/getLinesCount?line=[[[256,191],[470,624]],[[123,333],[470,321]]] -->
+    <h3 id="">示范</h3>
+    <pre class="code">
+#一条边
+http://127.0.0.1:3021/utils/getLineCount?line=[[256,191],[470,624]]
+#多条边
+http://127.0.0.1:3021/utils/getLinesCount?line=[[[256,191],[470,624]],[[123,333],[470,321]]]
+</pre>
+    <h3 id="">参数说明</h3>
+     <blockquote>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>参数</th>
+            <th>必选</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>line</td>
+            <td>true</td>
+            <td>所要计算的边</td>
+          </tr>
+          <tr>
+            <td>padding</td>
+            <td>false</td>
+            <td>路由间隔,默认10</td>
+          </tr>
+        </tbody>
+      </table>
+    </blockquote>
+
+    <h3 >返回值</h3>
+  <blockquote>
+     <table>
+        <thead>
+          <tr>
+            <th>name</th>
+            <th>类型</th>
+            <th>含义</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>data.count</td>
+            <td>int</td>
+            <td>个数</td>
+          </tr>
+          <tr>
+            <td>data.point</td>
+            <td>Point</td>
+            <td>点集</td>
+          </tr>
+          <tr>
+            <td>data.length</td>
+            <td>double</td>
+            <td>边长</td>
+          </tr>
+          <tr>
+            <td>data.dev</td>
+            <td>Object</td>
+            <td>偏移值</td>
+          </tr>
+        </tbody>
+      </table>
+  </blockquote>
+  <h3 id="othe">其他工具方法-代码篇</h3>
+<pre class='code code-demo' data-language='javascript'>
+/**
+  * 计算2点间 的距离
+  */
+getPointLength=function(node,node2){
+  return Math.pow( Math.pow(node[0]-node2[0],2)+ Math.pow(node[1]-node2[1],2), 0.5);
+},
+/**
+ * 判断点(node3)与直线(node1,node2)的垂足是否在线段(node1,node2)上
+ */
+isPointInSegments:function(node1,node2,node3){
+    return (node3[0]>node1[0]&&node3[0]&ltnode2[0])||(node3[0]&ltnode1[0]&&node3[0]>node2[0])
+},
+// qreal A = (pt1.y()-pt2.y())/(pt1.x()- pt2.x());
+// qreal B = (pt1.y()-A*pt1.y());
+// /// > 0 = ax +b -y;  对应垂线方程为 -x -ay + m = 0;(mm为系数)
+// /// > A = a; B = b;
+// qreal m = pt3.x() + A*pt3.y();
+//
+// /// 求两直线交点坐标
+// QPointF ptCross;
+// ptCross.setX((m-A*B)/(A*A + 1));
+// ptCross.setY(A*ptCross.x()+B);
+
+/****点到直线的距离***
+ * 过点（x1,y1）和点（x2,y2）的直线方程为：KX -Y + (x2y1 - x1y2)/(x2-x1) = 0
+ * 设直线斜率为K = (y2-y1)/(x2-x1),C=(x2y1 - x1y2)/(x2-x1)
+ * 点P(x0,y0)到直线AX + BY +C =0DE 距离为：d=|Ax0 + By0 + C|/sqrt(A*A + B*B)
+ * 点（x3,y3）到经过点（x1,y1）和点（x2,y2）的直线的最短距离为：
+ * distance = |K*x3 - y3 + C|/sqrt(K*K + 1)
+ */
+/**
+ * 计算点(node3)到线(node1,node2)的距离
+ */
+getPointToLineLength=function(node1,node2,node3,isSegments){
+    if (node1[0] == node2[0]){
+       return Math.abs(node3[0] - node1[0]);
+    }
+    if (node1[1] == node2[1]){
+       return Math.abs(node3[1] - node1[1]);
+    }
+    var lineK = (node2[1] - node1[1]) / (node2[0] - node1[0]);
+    var lineC = (node2[0] * node1[1] - node1[0] * node2[1]) / (node2[0] - node1[0]);
+
+    if(isSegments){
+        var tt = (lineK * node1[0] + node3[0] / lineK + node3[1] - node1[1]) / (1 / lineK + lineK)
+        var h =[
+            tt,
+            -1 / lineK * (tt - node3[0]) + node3[1]
+        ]
+        if(!this.isPointInSegments(node1,node2,h)){
+            return null;
+        }
+    }
+    return Math.abs(lineK * node3[0] - node3[1] + lineC) / (Math.sqrt(lineK * lineK + 1));
+},
+/**
+ * 计算边上可以放多少个路由器
+ */
+getLinesLength=function(lines,padding){
+    var t=0,point= [];
+    lines.forEach(function(item){
+        var n1 = item[0].coord,
+            n2 = item[1].coord,
+            dev = utils.getPointByPaddingDev(n1,n2,padding),
+            length = utils.getPointLength(n1,n2),
+
+        count = Math.ceil(length/(padding||10))
+        if(!dev){
+            console.log(lines);
+            console.log(item);
+        }
+
+        t+=(count-1);
+        for(var i = 1;i&ltcount;i++){
+            point.push({
+                coord:[n1[0]+dev.devx*dev.devxsym*i,n1[1]+dev.devy*dev.devysym*i],
+                name:"路由",
+            });
+        }
+    });
+    return {
+        count:t,
+        point:point
+    }
+},
+//
+getPointByPaddingDev=function(node,node2,padding){
+    var z = node2[0]-node[0];
+    var c = node2[1]-node[1];
+    if(node[0]==node2[0]){
+        return {
+            devx:0,
+            devy:Math.abs(node[1]-node2[1])/padding,
+            devxsym:1,
+            devysym:c>0?1:-1
+        }
+    }
+    if(node[1]==node2[1]){
+        return {
+            devx:Math.abs(node[0]-node2[0])/padding,
+            devy:0,
+            devxsym:z>0?1:-1,
+            devysym:1
+        }
+    }
+    var k = c/z;
+    return {
+        devx : Math.abs(padding*Math.cos(Math.atan(k))),
+        devy : Math.abs(padding*Math.sin(Math.atan(k))),
+        devxsym:z>0?1:-1,
+        devysym:c>0?1:-1
+    }
+
+}
+</pre>
+<p>预览</p>
+
+<img src="./img.png" class="img" style="max-width:100%;">
+
+</div>
+<script type="text/javascript" src='/jquery-2.1.1.js'></script>
+<script src="./jshighlight-master/js/jshighlight.core-v1.0.1.src.js"></script>
+<!-- <script src="./jshighlight-master/js/aaa.js"></script> -->
+<script type="text/javascript">
+  var node = [[256,191],[470,624],[123,685],[217,237],[87,998]];
+  $.get("http://www.mbdoge.cn:3021/com",{node:JSON.stringify(node)},function(e){
+    if(e.code==0){
+      console.log(e.data);
+    }
+  },'json') 
+</script>
+</body>
+</html>
